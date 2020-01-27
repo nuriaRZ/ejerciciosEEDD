@@ -1,4 +1,4 @@
-public class S01Ejercicio01 {
+public class holaMundo {
   public static void main(String[] args) {
     System.out.println("HOLA MUNDO");
   }
