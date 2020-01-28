@@ -1,20 +1,27 @@
-package tutorialJava.capitulo6b_Videojuegos.Arkanoid.version02;
+package tutorialJava.capitulo6b_Videojuegos.Arkanoid.version03;
 
 import java.awt.Color;
 
+/**
+ * Clase que implementa la primera fase del juego
+ * @author R
+ *
+ */
 public class Fase01 extends Fase {
 	// Propiedades estáticas de la fase
 	public static final int ESPACIO_SUPERIOR_SOBRE_LADRILLOS = 60;
 
 	
+	/**
+	 * Inicialización de la fase, es la implementación de un método abstracto en el supertipo
+	 */
 	@Override
 	public void inicializaFase() {
 
 	    // Inicializamos los ladrillos
-	    int numLadrillosPosibles = Arkanoid.getInstancia().getWidth() / (Ladrillo.ANCHO + Ladrillo.ESPACIO_ENTRE_LADRILLOS);
-	    int margenIzquierdo = (Arkanoid.getInstancia().getWidth() % (Ladrillo.ANCHO + Ladrillo.ESPACIO_ENTRE_LADRILLOS)) / 2;
+	    int numLadrillosPosibles = Arkanoid.ANCHO / (Ladrillo.ANCHO + Ladrillo.ESPACIO_ENTRE_LADRILLOS);
+	    int margenIzquierdo = (Arkanoid.ANCHO % (Ladrillo.ANCHO + Ladrillo.ESPACIO_ENTRE_LADRILLOS)) / 2;
 	    
-	    System.out.println("ancho" + Arkanoid.getInstancia().getWidth());
 	    // Array con los diferentes colores, uno por cada fila
 	    Color colores[] = new Color[] {Color.RED, Color.YELLOW, Color.PINK, Color.CYAN, Color.GREEN, Color.ORANGE};
 	    

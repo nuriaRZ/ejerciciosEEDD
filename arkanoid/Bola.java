@@ -1,4 +1,4 @@
-package tutorialJava.capitulo6b_Videojuegos.Arkanoid.version02;
+package tutorialJava.capitulo6b_Videojuegos.Arkanoid.version03;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -41,11 +41,11 @@ public class Bola extends Actor {
 	 */
 	public void act() {
 		// Si la bola se toca el borde por la izquierda o por la derecha, su velocidad cambia de signo
-		if (this.x < 0 || this.x > Arkanoid.getInstancia().getWidth() - DIAMETRO) {
+		if (this.x < 0 || this.x > Arkanoid.ANCHO - DIAMETRO) {
 			this.velocidadX = 0 - this.velocidadX;
 		}
 		// Si la bola se toca el borde por arriba o por abajo, su velocidad cambia de signo
-		if (this.y < 0 || this.y > Arkanoid.getInstancia().getHeight() - DIAMETRO) {
+		if (this.y < 0 || this.y > Arkanoid.ALTO - DIAMETRO) {
 			this.velocidadY = 0 - this.velocidadY;
 		}
 		// Agregamos las velocidades respectivas a cada eje para la bola

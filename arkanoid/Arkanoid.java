@@ -1,4 +1,4 @@
-package tutorialJava.capitulo6b_Videojuegos.Arkanoid.version02;
+package tutorialJava.capitulo6b_Videojuegos.Arkanoid.version03;
 
 import java.awt.BorderLayout;
 import java.awt.Canvas;
@@ -10,6 +10,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.image.BufferStrategy;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.swing.JFrame;
@@ -30,6 +31,11 @@ public class Arkanoid extends Canvas {
 	JFrame ventana = null;
 	// Lista de actores que se representan en pantalla
 	List<Actor> actores = new ArrayList<Actor>();
+	// Nave y bola
+	Nave nave = null;
+	Bola bola = null;
+	// Fase activa en el juego
+	Fase faseActiva = null;
 	// Estrategia de Doble Buffer
 	private BufferStrategy strategy;
 	// Variable para patrón Singleton
@@ -39,7 +45,7 @@ public class Arkanoid extends Canvas {
 	 * Getter Singleton
 	 * @return
 	 */
-	public static Arkanoid getInstancia () {
+	public synchronized static Arkanoid getInstancia () {
 		if (instancia == null) {
 			instancia = new Arkanoid();
 		}
@@ -85,6 +91,10 @@ public class Arkanoid extends Canvas {
 		this.requestFocus();
 		// Para resolver un problema de sincronización con la memoria de vídeo de Linux, utilizamos esta línea
 		Toolkit.getDefaultToolkit().sync();
+		
+		// Agrego los controladores de ratón y de teclado
+		this.addMouseMotionListener(new ControladorRaton());
+		this.addKeyListener(new ControladorTeclado());
 	}
 	
 	
@@ -110,15 +120,16 @@ public class Arkanoid extends Canvas {
 	 */
 	public void initWorld() {
 		// Preparación de la primera fase
-		Fase fase = new Fase01();
-		fase.inicializaFase();
+		this.faseActiva = new Fase01();
+		this.faseActiva.inicializaFase();
 		// Agregamos los actores de la primera fase a nuestro juego
 		this.actores.clear();
-		this.actores.addAll(fase.getActores());
-		
+		this.actores.addAll(this.faseActiva.getActores());
 		// Creación de los actores Nave y Bola
-	    this.actores.add(new Nave());
-	    this.actores.add(new Bola());
+		this.nave = new Nave();
+	    this.actores.add(this.nave);
+	    this.bola = new Bola();
+	    this.actores.add(this.bola);
 	}
 		
 
@@ -180,6 +191,13 @@ public class Arkanoid extends Canvas {
 	}
 	
 	
+	
+	// Getters
+	public Nave getNave() { return nave; }
+	public Bola getBola() { return bola; }
+
+
+
 	/**
 	 * Método main()
 	 * @param args

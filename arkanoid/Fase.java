@@ -1,8 +1,13 @@
-package tutorialJava.capitulo6b_Videojuegos.Arkanoid.version02;
+package tutorialJava.capitulo6b_Videojuegos.Arkanoid.version03;
 
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Todas las fases deberán extender esta clase abstracta y personalizar la apariencia y el comportamiento
+ * @author R
+ *
+ */
 public abstract class Fase {
 	
 	// Lista de actores a colocar en cualquier fase
