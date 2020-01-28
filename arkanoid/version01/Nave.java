@@ -1,4 +1,4 @@
-package tutorialJava.capitulo6b_Videojuegos.Arkanoid.version01;
+package tutorialJava.capitulo6b_Videojuegos.Arkanoid.version02;
 
 /**
  * Clase que representa a la nave de nuestro juego

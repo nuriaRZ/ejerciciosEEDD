@@ -1,4 +1,4 @@
-package tutorialJava.capitulo6b_Videojuegos.Arkanoid.version01;
+package tutorialJava.capitulo6b_Videojuegos.Arkanoid.version02;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -12,12 +12,13 @@ public class Ladrillo extends Actor {
 	// Damos un ancho y un alto específico al ladrillo. Suponemos que todos los ladrillos serán iguales
 	public static final int ANCHO = 30;
 	public static final int ALTO = 20;
+	public static final int ESPACIO_ENTRE_LADRILLOS = 2;
 	
 	// Propiedades específicas de cada ladrillo
 	private Color color = null;
 	
 	/**
-	 * 
+	 * Constructor
 	 */
 	public Ladrillo() {
 		super();
@@ -27,7 +28,17 @@ public class Ladrillo extends Actor {
 		this.color = Color.WHITE; // Por defecto pongo el ladrillo en color blanco
 	}
 
-	
+	/**
+	 * Constructor parametrizado
+	 * @param x
+	 * @param y
+	 * @param color
+	 */
+	public Ladrillo(int x, int y, Color color) {
+		this.x = x;
+		this.y = y;
+		this.color = color;
+	}
 	/**
 	 * Pintado del ladrillo en pantalla
 	 */

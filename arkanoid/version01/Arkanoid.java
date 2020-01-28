@@ -1,4 +1,4 @@
-package tutorialJava.capitulo6b_Videojuegos.Arkanoid.version01;
+package tutorialJava.capitulo6b_Videojuegos.Arkanoid.version02;
 
 import java.awt.BorderLayout;
 import java.awt.Canvas;
@@ -68,7 +68,6 @@ public class Arkanoid extends Canvas {
 		// pulse sobre el aspa de la ventana
 		ventana.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		ventana.addWindowListener( new WindowAdapter() {
-			@Override
 			public void windowClosing(WindowEvent e) {
 				cerrarAplicacion();
 			}
@@ -85,6 +84,7 @@ public class Arkanoid extends Canvas {
 		// se transmita directamente al Canvas.
 		this.requestFocus();
 		// Para resolver un problema de sincronización con la memoria de vídeo de Linux, utilizamos esta línea
+		Toolkit.getDefaultToolkit().sync();
 	}
 	
 	
@@ -109,10 +109,16 @@ public class Arkanoid extends Canvas {
 	 * la primera fase.
 	 */
 	public void initWorld() {
-		// Creación de los actores
-	    actores.add(new Nave());
-	    actores.add(new Ladrillo());
-	    actores.add(new Bola());
+		// Preparación de la primera fase
+		Fase fase = new Fase01();
+		fase.inicializaFase();
+		// Agregamos los actores de la primera fase a nuestro juego
+		this.actores.clear();
+		this.actores.addAll(fase.getActores());
+		
+		// Creación de los actores Nave y Bola
+	    this.actores.add(new Nave());
+	    this.actores.add(new Bola());
 	}
 		
 
@@ -131,7 +137,6 @@ public class Arkanoid extends Canvas {
 	 * Método responsable de repintar cada frame del juego
 	 */
 	public void paintWorld() {
-		Toolkit.getDefaultToolkit().sync();
 		// Obtenemos el objeto Graphics (la brocha) desde la estrategia de doble búffer
 		Graphics2D g = (Graphics2D) strategy.getDrawGraphics();
 		// Lo primero que hace cada frame es pintar un rectángulo tan grande como la escena,
